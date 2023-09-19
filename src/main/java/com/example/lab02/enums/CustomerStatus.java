@@ -1,5 +1,8 @@
 package com.example.lab02.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum CustomerStatus {
 
     ACTIVE(0),
@@ -9,7 +12,4 @@ public enum CustomerStatus {
          this.value = value;
      }
 
-     public int getValue(){
-         return value;
-     }
 }

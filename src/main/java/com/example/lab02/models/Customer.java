@@ -1,12 +1,11 @@
 package com.example.lab02.models;
 
 import com.example.lab02.enums.CustomerStatus;
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -16,4 +15,7 @@ import lombok.NoArgsConstructor;
 public class Customer extends Person{
     @Column(name = "status", columnDefinition = "enum('ACTIVE', 'IN_ACTIVE')")
     private CustomerStatus status;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 }

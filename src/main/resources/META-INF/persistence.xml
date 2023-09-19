@@ -12,6 +12,11 @@
     <class>com.example.lab02.models.Product</class>
     <class>com.example.lab02.models.ProductPrice</class>
     <class>com.example.lab02.models.ProductImage</class>
+    <class>com.example.lab02.models.Order</class>
+    <class>com.example.lab02.models.OrderDetail</class>
+    <class>com.example.lab02.models.OrderDetailPK</class>
+
+
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 

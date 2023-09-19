@@ -37,4 +37,7 @@ public class Product {
     @OneToMany(mappedBy = "product")
     @PrimaryKeyJoinColumn(name = "product_id")
     private List<ProductImage> productImages;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderDetail> orderDetails;
 }

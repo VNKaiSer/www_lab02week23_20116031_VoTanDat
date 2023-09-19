@@ -1,6 +1,9 @@
 package com.example.lab02.enums;
 
 
+import lombok.Getter;
+
+@Getter
 public enum EmployeeStatus {
     TEMINATE(-1),
     ACTIVE(1),
@@ -10,7 +13,4 @@ public enum EmployeeStatus {
         this.value = value;
     }
 
-    public int getValue(){
-        return value;
-    }
 }
