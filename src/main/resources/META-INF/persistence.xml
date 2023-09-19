@@ -9,6 +9,9 @@
     <class>com.example.lab02.models.Person</class>
     <class>com.example.lab02.models.Customer</class>
     <class>com.example.lab02.models.Employee</class>
+    <class>com.example.lab02.models.Product</class>
+    <class>com.example.lab02.models.ProductPrice</class>
+    <class>com.example.lab02.models.ProductImage</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 

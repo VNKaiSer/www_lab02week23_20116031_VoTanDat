@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @ToString
+@MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Person {
     @Id
     @Column(nullable = false, length = 10)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "customer_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     @Column(name = "full_name", nullable = true, length = 255)
     private String fullName;

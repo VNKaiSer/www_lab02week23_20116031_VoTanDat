@@ -28,8 +28,8 @@ public class DBInstance {
 
     public static void main(String[] args) {
         EntityManager em = DBInstance.getInstance().getEntityManager();
-        em.getTransaction().begin();
+//        em.getTransaction().begin();
 //        em.persist(new Customer("1", "Nguyen Van A", new LocalDateTime(), "a@a.com", "0123456789", "Ha Noi"));
-        em.getTransaction().commit();
+//        em.getTransaction().commit();
     }
 }
