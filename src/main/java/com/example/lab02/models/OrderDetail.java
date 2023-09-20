@@ -2,9 +2,7 @@ package com.example.lab02.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.io.Serializable;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,8 +12,6 @@ import java.util.List;
 @IdClass(OrderDetailPK.class)
 @Table(name = "order_detail")
 public class OrderDetail {
-
-
     @Column(name = "order_id", nullable = false, length = 10)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -35,9 +31,6 @@ public class OrderDetail {
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
-
-
-
 }
 @NoArgsConstructor
 @AllArgsConstructor
