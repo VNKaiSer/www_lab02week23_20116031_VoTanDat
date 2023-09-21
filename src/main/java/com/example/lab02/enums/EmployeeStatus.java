@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 public enum EmployeeStatus {
-    TEMINATE(-1),
+    TERMINATE(-1),
     ACTIVE(1),
     IN_ACTIVE(1);
-    private int value;
+    private final int value;
     EmployeeStatus(int value){
         this.value = value;
     }

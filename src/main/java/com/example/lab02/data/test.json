@@ -1,0 +1,8 @@
+// product test json
+{
+  "product_name": "Smartphone XYZ",
+  "description": "A high-end smartphone with advanced features.",
+  "unit": "Piece",
+  "manufacturer_name": "TechCo Inc.",
+  "status": "ACTIVE"
+}

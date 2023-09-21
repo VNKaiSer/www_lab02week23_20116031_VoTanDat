@@ -1,9 +1,14 @@
 package com.example.lab02.repositories.instance;
 
+import com.example.lab02.enums.EmployeeStatus;
 import com.example.lab02.models.Customer;
+import com.example.lab02.models.Employee;
+import com.example.lab02.repositories.EmployeeRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
+import java.time.LocalDateTime;
 
 
 public class DBInstance {
@@ -27,9 +32,8 @@ public class DBInstance {
     }
 
     public static void main(String[] args) {
-        EntityManager em = DBInstance.getInstance().getEntityManager();
-//        em.getTransaction().begin();
-//        em.persist(new Customer("1", "Nguyen Van A", new LocalDateTime(), "a@a.com", "0123456789", "Ha Noi"));
-//        em.getTransaction().commit();
+        Employee e = new Employee("Vo Tan Dat", LocalDateTime.now(), "tandatvok16@gmail.com","0329672303","Ho Chi Minh", EmployeeStatus.ACTIVE);
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+        employeeRepository.insert(e);
     }
 }
