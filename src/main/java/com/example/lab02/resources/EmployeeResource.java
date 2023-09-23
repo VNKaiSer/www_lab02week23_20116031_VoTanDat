@@ -2,9 +2,7 @@ package com.example.lab02.resources;
 
 import com.example.lab02.models.Employee;
 import com.example.lab02.services.EmployeeService;
-import com.example.lab02.services.ParentService;
 import com.example.lab02.services.impl.EmployeeServiceImpl;
-import com.example.lab02.services.impl.ParentServiceImpl;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 

@@ -7,35 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class ParentServiceImpl<T> implements ParentService<T> {
-    private final ParentRepository<T> parentRepository;
+    protected final ParentRepository<T> parentRepository;
     public ParentServiceImpl(){
 
-        parentRepository = new ParentRepository<T>() {
-            @Override
-            public boolean insert(Object obj) {
-                return super.insert(obj);
-            }
-
-            @Override
-            public boolean update(Object obj) {
-                return super.update(obj);
-            }
-
-            @Override
-            public boolean delete(Object obj) {
-                return super.delete(obj);
-            }
-
-            @Override
-            public Optional<T> get(Object id, Class<T> clazz) {
-                return super.get(id, clazz);
-            }
-
-            @Override
-            public List<T> getAll(Class<T> clazz) {
-                return super.getAll(clazz);
-            }
-        };
+        parentRepository = new ParentRepository<>();
     }
     @Override
     public List<T> getAll(Class<T> clazz) {

@@ -11,6 +11,7 @@ extends ParentServiceImpl<Employee>
 implements EmployeeService {
     private final EmployeeRepository repository;
     public EmployeeServiceImpl(){
+        super();
         repository = new EmployeeRepository();
     }
 

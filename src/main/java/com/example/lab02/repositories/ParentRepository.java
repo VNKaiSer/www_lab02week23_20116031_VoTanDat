@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public abstract class ParentRepository<T> implements IFRepository<T>{
+public class ParentRepository<T> implements IFRepository<T>{
     protected final EntityManager entityManager;
     protected final EntityTransaction transaction;
     protected final Logger logger =

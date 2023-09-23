@@ -14,6 +14,10 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Product.getProductsActive", query = "SELECT p FROM Product p WHERE p.status = :status"),
+    @NamedQuery(name = "Product.deleteProduct", query = "UPDATE Product p SET p.status = 'IN_ACTIVE' WHERE p.id = :id")
+})
 public class Product {
     @Id
     @Column(name = "product_id", nullable = false, length = 10)
