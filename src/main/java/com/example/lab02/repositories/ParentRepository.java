@@ -15,9 +15,9 @@ import java.util.Optional;
 
 
 public abstract class ParentRepository<T> implements IFRepository<T>{
-    private final EntityManager entityManager;
-    private final EntityTransaction transaction;
-    private final Logger logger =
+    protected final EntityManager entityManager;
+    protected final EntityTransaction transaction;
+    protected final Logger logger =
             LoggerFactory.getLogger(this.getClass().getName());
 
     public ParentRepository(){

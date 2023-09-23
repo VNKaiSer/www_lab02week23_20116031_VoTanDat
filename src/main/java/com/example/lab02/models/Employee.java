@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@Entity
+@Entity(name = "employees")
 @Table(name = "employees")
 @AttributeOverride(name = "Id", column = @Column(name = "employee_id"))
 public class Employee extends Person{

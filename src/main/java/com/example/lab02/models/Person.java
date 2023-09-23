@@ -1,5 +1,6 @@
 package com.example.lab02.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,6 +23,7 @@ public abstract class Person {
 
     @Column(name = "dob", nullable = true, length = 10)
     @JsonProperty("dob")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dob;
 
     @Column(name = "email", nullable = true, length = 255)
