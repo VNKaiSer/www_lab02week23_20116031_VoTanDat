@@ -74,8 +74,10 @@ public abstract class ParentRepository<T> implements IFRepository<T>{
 
     @Override
     public List<T> getAll(Class<T> clazz) {
-        String queryString = "SELECT e FROM " + clazz.getSimpleName() + " e";
-        TypedQuery<T> typedQuery = entityManager.createQuery(queryString, clazz);
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(clazz);
+        query.from(clazz);
+        TypedQuery<T> typedQuery = entityManager.createQuery(query);
         return typedQuery.getResultList();
     }
 

@@ -48,8 +48,8 @@ public class ParentServiceImpl<T> implements ParentService<T> {
     }
 
     @Override
-    public boolean insert(T obj) {
-        return parentRepository.insert(obj);
+    public void insert(T obj) {
+        parentRepository.insert(obj);
     }
 
     @Override

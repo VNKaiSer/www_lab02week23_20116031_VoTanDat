@@ -14,6 +14,10 @@ import java.util.List;
 @Entity(name = "employees")
 @Table(name = "employees")
 @AttributeOverride(name = "Id", column = @Column(name = "employee_id"))
+@NamedQueries({
+        @NamedQuery(name = "employee.deleteEmp", query = "UPDATE employees e SET e.status = 'IN_ACTIVE' WHERE e.id = :id"),
+        @NamedQuery(name = "Employee.getEmpActive", query = "SELECT e FROM employees e WHERE e.status = 'ACTIVE'")
+})
 public class Employee extends Person{
     @Enumerated(EnumType.STRING)
     @Column(name = "status", columnDefinition = "enum('ACTIVE', 'IN_ACTIVE', 'TERMINATE')")

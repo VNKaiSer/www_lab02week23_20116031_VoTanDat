@@ -1,16 +1,10 @@
 package com.example.lab02.repositories;
 
 import com.example.lab02.models.Employee;
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@NamedQueries({
-        @NamedQuery(name = "Employee.deleteEmp", query = "UPDATE employees e SET e.status = 'IN_ACTIVE' WHERE e.id = :id"),
-        @NamedQuery(name = "Employee.getEmpActive", query = "SELECT e FROM employees e WHERE e.status = 'ACTIVE'")
-})
+
 public class EmployeeRepository extends ParentRepository<Employee> {
 
     public EmployeeRepository() {
@@ -20,7 +14,7 @@ public class EmployeeRepository extends ParentRepository<Employee> {
     public void deleteEmp(long id) {
         try {
             transaction.begin();
-            entityManager.createNamedQuery("Employee.deleteEmp")
+            entityManager.createNamedQuery("employee.deleteEmp")
                     .setParameter("id", id)
                     .executeUpdate();
             transaction.commit();
@@ -31,6 +25,6 @@ public class EmployeeRepository extends ParentRepository<Employee> {
     }
 
     public List<Employee> getEmpActive(){
-        return entityManager.createNamedQuery("Employee.getEmpActive").getResultList();
+        return (List<Employee>) entityManager.createNamedQuery("Employee.getEmpActive").getResultList();
     }
 }

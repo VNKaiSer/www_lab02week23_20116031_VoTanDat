@@ -46,4 +46,19 @@ public class EmployeeResource {
         return Response.ok().build();
     }
 
+    @GET
+    @Produces("application/json")
+    @Path("/active")
+    public Response getEmpActive(){
+        return Response.ok(service.getEmpActive()).build();
+    }
+
+    @POST
+    @Produces("application/json")
+    public Response insert(Employee employee){
+        service.insert(employee);
+        return Response.ok(employee).build();
+    }
+
+
 }
