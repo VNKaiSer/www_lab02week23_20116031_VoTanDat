@@ -49,4 +49,8 @@ public abstract class Person {
     public Person(){
 
     }
+
+    public Person(long id){
+        this.Id = id;
+    }
 }

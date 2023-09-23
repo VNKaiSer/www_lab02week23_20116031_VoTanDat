@@ -36,4 +36,10 @@ public class Employee extends Person{
         super();
     }
 
+    public Employee(long id){
+        super(id);
+    }
+
+
+
 }

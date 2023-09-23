@@ -5,8 +5,12 @@ import com.example.lab02.services.OrderDetailService;
 import com.example.lab02.services.OrderService;
 import com.example.lab02.services.impl.OrderDetailServiceImpl;
 import com.example.lab02.services.impl.OrderServiceImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
+
+import java.io.IOException;
 
 @Path("orders")
 public class OrderResource {
@@ -32,15 +36,24 @@ public class OrderResource {
 
     @POST
     @Produces("application/json")
-    public Response insert(Order order){
-        service.insert(order);
-        return Response.ok(order).build();
+    @Consumes("application/json")
+    public Response insert(String jsonOrder) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            Order order = objectMapper.readValue(jsonOrder, Order.class);
+            service.insert(order);
+            return Response.ok(order).build();
+        } catch (IOException e) {
+            // Xử lý lỗi khi ánh xạ dữ liệu JSON vào đối tượng Order
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
     }
 
     @POST
     @Produces("application/json")
     @Consumes("application/json")
-    public Response update(Order order){
+    @Path("/{id}")
+    public Response update(@ PathParam("id") long id,Order order){
         service.update(order);
         return Response.ok(order).build();
     }

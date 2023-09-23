@@ -14,7 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "orders")
 //@NamedQueries({
@@ -43,4 +42,14 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
+
+    public Order() {
+
+    }
+
+    public Order(Customer customer, Employee employee, LocalDateTime orderDate) {
+        this.customer = customer;
+        this.employee = employee;
+        this.orderDate = orderDate;
+    }
 }
