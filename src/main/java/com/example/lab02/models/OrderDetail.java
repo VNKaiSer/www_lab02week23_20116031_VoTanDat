@@ -11,6 +11,9 @@ import java.io.Serializable;
 @Entity
 @IdClass(OrderDetailPK.class)
 @Table(name = "order_detail")
+@NamedQueries({
+        @NamedQuery(name = "OrderDetail.getListOrderDetail", query = "SELECT o FROM OrderDetail o WHERE o.order.id = :id")
+})
 public class OrderDetail {
     @Column(name = "order_id", nullable = false, length = 10)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

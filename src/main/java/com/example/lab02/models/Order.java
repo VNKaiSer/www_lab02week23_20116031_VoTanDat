@@ -15,6 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "orders")
+//@NamedQueries({
+//    @NamedQuery(name = "", query = "SELECT o FROM Order o WHERE o.status = :status")
+//})
 public class Order {
     @Id
     @Column(name = "order_id", nullable = false, length = 10)
