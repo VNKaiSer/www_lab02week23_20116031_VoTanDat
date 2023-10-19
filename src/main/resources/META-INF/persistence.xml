@@ -4,36 +4,36 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
 
-  <persistence-unit name="default">
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>com.example.lab02.models.Person</class>
-    <class>com.example.lab02.models.Customer</class>
-    <class>com.example.lab02.models.Employee</class>
-    <class>com.example.lab02.models.Product</class>
-    <class>com.example.lab02.models.ProductPrice</class>
-    <class>com.example.lab02.models.ProductImage</class>
-    <class>com.example.lab02.models.Order</class>
-    <class>com.example.lab02.models.OrderDetail</class>
-    <class>com.example.lab02.models.OrderDetailPK</class>
+<persistence-unit name="default">
+  <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+  <class>com.example.lab02.models.Person</class>
+  <class>com.example.lab02.models.Customer</class>
+  <class>com.example.lab02.models.Employee</class>
+  <class>com.example.lab02.models.Product</class>
+  <class>com.example.lab02.models.ProductPrice</class>
+  <class>com.example.lab02.models.ProductImage</class>
+  <class>com.example.lab02.models.Order</class>
+  <class>com.example.lab02.models.OrderDetail</class>
+  <class>com.example.lab02.models.OrderDetailPK</class>
+
+  <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
+  <properties>
+    <property name="jakarta.persistence.jdbc.driver"
+              value="org.mariadb.jdbc.Driver"/>
+    <property name="jakarta.persistence.jdbc.url"
+              value="jdbc:mariadb://localhost:3307/shop-online?createDatabaseIfNotExist=true"/>
+    <property name="jakarta.persistence.jdbc.user" value="root"/>
+    <property name="jakarta.persistence.jdbc.password"
+              value="root"/>
+    <property name="jakarta.persistence.schemageneration.database.action" value="create"/>
+    <!--show query-->
+    <property name="hibernate.show_sql" value="true" />
+    <property name="hibernate.hbm2ddl.auto" value="update" />
 
-    <properties>
-      <property name="jakarta.persistence.jdbc.driver"
-                value="org.mariadb.jdbc.Driver"/>
-      <property name="jakarta.persistence.jdbc.url"
-                value="jdbc:mariadb://localhost:3307/shop-online?createDatabaseIfNotExist=true"/>
-      <property name="jakarta.persistence.jdbc.user" value="root"/>
-      <property name="jakarta.persistence.jdbc.password"
-                value="root"/>
-      <property name="jakarta.persistence.schemageneration.database.action" value="create"/>
-      <!--show query-->
-      <property name="hibernate.show_sql" value="true" />
-      <property name="hibernate.hbm2ddl.auto" value="update" />
+  </properties>
 
-    </properties>
-
-  </persistence-unit>
+</persistence-unit>
 </persistence>

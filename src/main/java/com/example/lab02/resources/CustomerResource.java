@@ -15,6 +15,13 @@ public class CustomerResource {
     public CustomerResource(){
         service = new CustomerServiceImpl();
     }
+
+    @GET
+    @Produces("application/json")
+    public Response getCustomerById(){
+        return Response.ok(service.get(1, Customer.class)).build();
+    }
+
     @GET
     @Produces("application/json")
     public Response getCustomers(){
