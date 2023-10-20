@@ -30,8 +30,8 @@ public class OrderResource {
     @GET
     @Produces("application/json")
     @Path("/{id}")
-    public Response getEmpById(@PathParam("id") long eid){
-        return Response.ok(service.get(eid, Order.class)).build();
+    public Response getOrderById(@PathParam("id") long oid){
+        return Response.ok(service.get(oid, Order.class)).build();
     }
 
     @POST
@@ -44,7 +44,6 @@ public class OrderResource {
             service.insert(order);
             return Response.ok(order).build();
         } catch (IOException e) {
-            // Xử lý lỗi khi ánh xạ dữ liệu JSON vào đối tượng Order
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -53,7 +52,7 @@ public class OrderResource {
     @Produces("application/json")
     @Consumes("application/json")
     @Path("/{id}")
-    public Response update(@ PathParam("id") long id,Order order){
+    public Response updateOrder(@ PathParam("id") long id,Order order){
         service.update(order);
         return Response.ok(order).build();
     }

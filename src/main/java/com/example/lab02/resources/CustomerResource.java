@@ -6,7 +6,6 @@ import com.example.lab02.services.impl.CustomerServiceImpl;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 
-import java.util.List;
 import java.util.Optional;
 
 @Path("/customers")
@@ -15,13 +14,6 @@ public class CustomerResource {
     public CustomerResource(){
         service = new CustomerServiceImpl();
     }
-
-    @GET
-    @Produces("application/json")
-    public Response getCustomerById(){
-        return Response.ok(service.get(1, Customer.class)).build();
-    }
-
     @GET
     @Produces("application/json")
     public Response getCustomers(){
@@ -61,14 +53,14 @@ public class CustomerResource {
         return Response.ok(service.getCustomersActive()).build();
     }
 
-    @POST
-    @Produces("application/json")
-    @Consumes("application/json")
-    @Path("/{id}")
-    public Response updateCustomer(Customer customer){
-        service.update(customer);
-        return Response.ok(customer).build();
-    }
+//    @POST
+//    @Produces("application/json")
+//    @Consumes("application/json")
+//    @Path("/{id}")
+//    public Response updateCustomer(Customer customer){
+//        service.update(customer);
+//        return Response.ok(customer).build();
+//    }
 
 
 
