@@ -42,9 +42,15 @@ dependencies {
   // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
 
+  // https://mavenlibs.com/maven/dependency/com.cloudinary/cloudinary
+  implementation 'com.cloudinary:cloudinary:1.0.14'
+
+
+
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
+
 
 test {
 useJUnitPlatform()}

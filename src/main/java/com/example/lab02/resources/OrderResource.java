@@ -1,6 +1,6 @@
 package com.example.lab02.resources;
 
-import com.example.lab02.converters.ObjectMapperContextResolver;
+
 import com.example.lab02.models.Order;
 import com.example.lab02.serializes.OrderSerializer;
 import com.example.lab02.services.OrderDetailService;
@@ -13,34 +13,43 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
-
-import java.io.IOException;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Path("orders")
 public class OrderResource {
+    ObjectMapper mapper = new ObjectMapper();
+
     private final OrderService service;
     private final OrderDetailService orderDetailService;
     private
     OrderResource(){
         service = new OrderServiceImpl();
         orderDetailService = new OrderDetailServiceImpl();
+        SimpleModule module = new SimpleModule("OrderSerializer", new Version(1, 0, 0, null, null, null));
+        module.addSerializer(Order.class, new OrderSerializer());
+        mapper.registerModule(module);
     }
     @GET
     @Produces("application/json")
-    public Response getAllOrder(){
-        return Response.ok(service.getAll(Order.class)).build();
+    public Response getAllOrder() throws JsonProcessingException {
+        List<Order> orders = service.getAll(Order.class);
+        String orderStr = "[";
+        if (orders.isEmpty())
+            return Response.status(Response.Status.NOT_FOUND).build();
+        for (Order order : orders){
+            orderStr += mapper.writeValueAsString(order);
+        }
+        orderStr += "]";
+        return Response.ok(orderStr).build();
     }
 
     @GET
     @Produces("application/json")
     @Path("/{id}")
     public Response getOrderById(@PathParam("id") long oid){
-        ObjectMapper mapper = new ObjectMapper();
-        SimpleModule module = new SimpleModule("OrderSerializer", new Version(1, 0, 0, null, null, null));
-        module.addSerializer(Order.class, new OrderSerializer());
-        mapper.registerModule(module);
+
         Optional<Order> order = service.get(oid, Order.class);
         if (order.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
