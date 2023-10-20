@@ -15,8 +15,6 @@ import java.util.List;
 @Entity
 @Table(name = "customers")
 @AttributeOverride(name = "Id", column = @Column(name = "customer_id"))
-@Setter
-@Getter
 @NamedQueries({
     @NamedQuery(name = "Customer.getCustomersActive", query = "SELECT c FROM Customer c WHERE c.status = :status"),
     @NamedQuery(name = "Customer.deleteCustomer", query = "UPDATE Customer c SET c.status = 'IN_ACTIVE' WHERE c.id = :id")
@@ -41,5 +39,21 @@ public class Customer extends Person{
 
     public Customer(long id){
         super(id);
+    }
+
+    public CustomerStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(CustomerStatus status) {
+        this.status = status;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
