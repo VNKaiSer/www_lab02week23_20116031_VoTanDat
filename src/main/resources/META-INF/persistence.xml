@@ -24,7 +24,7 @@
     <property name="jakarta.persistence.jdbc.driver"
               value="org.mariadb.jdbc.Driver"/>
     <property name="jakarta.persistence.jdbc.url"
-              value="jdbc:mariadb://localhost:3307/shop-online-new?createDatabaseIfNotExist=true"/>
+              value="jdbc:mariadb://localhost:3306,/shop-online-new?createDatabaseIfNotExist=true"/>
     <property name="jakarta.persistence.jdbc.user" value="root"/>
     <property name="jakarta.persistence.jdbc.password"
               value="root"/>
