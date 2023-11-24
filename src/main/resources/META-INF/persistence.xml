@@ -6,15 +6,15 @@
 
 <persistence-unit name="default">
   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-  <class>com.example.lab02.models.Person</class>
-  <class>com.example.lab02.models.Customer</class>
-  <class>com.example.lab02.models.Employee</class>
-  <class>com.example.lab02.models.Product</class>
-  <class>com.example.lab02.models.ProductPrice</class>
-  <class>com.example.lab02.models.ProductImage</class>
-  <class>com.example.lab02.models.Order</class>
-  <class>com.example.lab02.models.OrderDetail</class>
-  <class>com.example.lab02.models.OrderDetailPK</class>
+  <class>com.example.lab02.backend.models.Person</class>
+  <class>com.example.lab02.backend.models.Customer</class>
+  <class>com.example.lab02.backend.models.Employee</class>
+  <class>com.example.lab02.backend.models.Product</class>
+  <class>com.example.lab02.backend.models.ProductPrice</class>
+  <class>com.example.lab02.backend.models.ProductImage</class>
+  <class>com.example.lab02.backend.models.Order</class>
+  <class>com.example.lab02.backend.models.OrderDetail</class>
+  <class>com.example.lab02.backend.models.OrderDetailPK</class>
 
   <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
