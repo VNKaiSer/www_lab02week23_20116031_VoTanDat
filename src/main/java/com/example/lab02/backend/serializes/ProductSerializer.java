@@ -25,7 +25,7 @@ public class ProductSerializer  extends StdSerializer<Product> {
         gen.writeStringField("product_name", value.getProductName());
         gen.writeStringField("description",value.getDescription());
         gen.writeStringField("unit", value.getUnit());
-        gen.writeStringField("manufacturer_number", value.getManufacturerName());
+        gen.writeStringField("manufacturer", value.getManufacturerName());
         double price = 0;
         LocalDateTime dateLastest = LocalDateTime.now();
         for (ProductPrice p:
@@ -36,7 +36,7 @@ public class ProductSerializer  extends StdSerializer<Product> {
                 price = p.getPrice();
             }
         }
-        gen.writeNumberField("price",price );
+        gen.writeNumberField("product_price",price );
         gen.writeEndObject();
     }
 }
