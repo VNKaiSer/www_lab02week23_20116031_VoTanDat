@@ -1,31 +1,46 @@
 package com.example.lab02.resources;
 
+import com.example.lab02.models.Order;
 import com.example.lab02.models.Product;
+import com.example.lab02.serializes.OrderSerializer;
+import com.example.lab02.serializes.ProductSerializer;
 import com.example.lab02.services.ParentService;
 import com.example.lab02.services.ProductService;
 import com.example.lab02.services.impl.ParentServiceImpl;
 import com.example.lab02.services.impl.ProductServiceImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Path("/products")
 public class ProductResource {
     private final ProductService service;
+    private ObjectMapper mapper = new ObjectMapper();
     ProductResource(){
         service = new ProductServiceImpl();
+        SimpleModule module = new SimpleModule("ProductSerializer", new Version(1, 0, 0, null, null, null));
+        module.addSerializer(Product.class, new ProductSerializer());
+        mapper.registerModule(module);
     }
 
     @GET
     @Produces("application/json")
-    public Response getAll(){
+    public Response getAll() throws JsonProcessingException {
         List<Product> products = service.getAll(Product.class);
-        for (Product product : products){
-            System.out.println(product);
+        if (products.isEmpty()) return Response.status(Response.Status.BAD_REQUEST).build();
+        List<String> jsonProduct = new ArrayList<>();
+        for (Product p:
+             products) {
+            jsonProduct.add(mapper.writeValueAsString(p));
         }
-        return Response.ok(products).build();
+        return Response.ok(jsonProduct.toString()).build();
     }
 
     @POST
