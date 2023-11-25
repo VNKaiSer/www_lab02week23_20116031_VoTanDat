@@ -27,4 +27,45 @@ public class ProductPrice {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    public LocalDateTime getId() {
+        return id;
+    }
+
+    public void setId(LocalDateTime id) {
+        this.id = id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getNode() {
+        return node;
+    }
+
+    public void setNode(String node) {
+        this.node = node;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductPrice{" +
+                "id=" + id +
+                ", price=" + price +
+                ", node='" + node + '\'' +
+//                ", product=" + product +
+                '}';
+    }
 }

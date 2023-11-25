@@ -13,18 +13,21 @@ public class ProductModel {
     private String description;
     @JsonProperty("unit")
     private String unit;
-    @JsonProperty("manufacturer_number")
+    @JsonProperty("manufacturer")
     private String manufacturer;
+    @JsonProperty("product_image")
+    private String productImage;
 
     public ProductModel() {
     }
 
-    public ProductModel(String name, double price, String description, String unit, String manufacturer) {
+    public ProductModel(String name, double price, String description, String unit, String manufacturer, String productImage) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.unit = unit;
         this.manufacturer = manufacturer;
+        this.productImage = productImage;
     }
 
     public long getId() {
@@ -73,5 +76,18 @@ public class ProductModel {
 
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
+    @Override
+    public String toString() {
+        return "{'product_id':" + id + ", 'product_name':" + name + ", 'product_price':" + price + ", 'description':" + description + ", 'unit':" + unit + ", 'manufacturer':" + manufacturer + ", 'product_image':" + productImage + "}";
     }
 }

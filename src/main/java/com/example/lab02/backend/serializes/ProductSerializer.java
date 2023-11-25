@@ -26,17 +26,29 @@ public class ProductSerializer  extends StdSerializer<Product> {
         gen.writeStringField("description",value.getDescription());
         gen.writeStringField("unit", value.getUnit());
         gen.writeStringField("manufacturer", value.getManufacturerName());
-        double price = 0;
-        LocalDateTime dateLastest = LocalDateTime.now();
-        for (ProductPrice p:
-             value.getProductPrices()) {
+        double price = getPrice(value);
+        System.out.println(price);
+        gen.writeNumberField("product_price",price );
+        gen.writeStringField("product_image", value.getProductImages().get(0).getPath());
+        gen.writeEndObject();
+    }
 
-            if (p.getId().isAfter(dateLastest)){
-                dateLastest = p.getId();
-                price = p.getPrice();
+    private double getPrice(Product value) {
+        double price = 0;
+        if (value.getProductPrices().size() < 0) {
+            price = 0;
+        }
+        else {
+            LocalDateTime dateLastest = value.getProductPrices().get(0).getId();
+            price = value.getProductPrices().get(0).getPrice();
+            for (ProductPrice p:
+                    value.getProductPrices()) {
+                if (p.getId().isAfter(dateLastest)){
+                    dateLastest = p.getId();
+                    price = p.getPrice();
+                }
             }
         }
-        gen.writeNumberField("product_price",price );
-        gen.writeEndObject();
+        return price;
     }
 }
