@@ -16,10 +16,11 @@ public class ServletController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            Object actionObject = req.getParameter("action");
-            if (actionObject != null) {
-
-
+            String action = req.getParameter("action");
+            if (action != null) {
+                if (action.equals("checkout")) {
+                    resp.sendRedirect("checkout.jsp");
+                }
             } else {
                 resp.sendRedirect("index.jsp");
             }
