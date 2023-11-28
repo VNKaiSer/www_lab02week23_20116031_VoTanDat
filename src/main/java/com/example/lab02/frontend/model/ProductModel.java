@@ -2,6 +2,8 @@ package com.example.lab02.frontend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class ProductModel {
     @JsonProperty("product_id")
     private long id;
@@ -89,5 +91,18 @@ public class ProductModel {
     @Override
     public String toString() {
         return "{'product_id':" + id + ", 'product_name':" + name + ", 'product_price':" + price + ", 'description':" + description + ", 'unit':" + unit + ", 'manufacturer':" + manufacturer + ", 'product_image':" + productImage + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductModel that = (ProductModel) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

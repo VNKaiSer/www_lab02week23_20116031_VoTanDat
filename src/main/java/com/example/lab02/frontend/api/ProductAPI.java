@@ -36,6 +36,17 @@ public class ProductAPI {
         return productsList;
     }
 
+    public ProductModel getProductById(long id){
+        try {
+            String apiResponse = sendGetRequest(API_URL + "/" + id);
+            ObjectMapper objectMapper = new ObjectMapper();
+            ProductModel product = objectMapper.readValue(apiResponse, ProductModel.class);
+            return product;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static String sendGetRequest(String apiUrl) throws IOException {
         HttpURLConnection connection = null;
         try {

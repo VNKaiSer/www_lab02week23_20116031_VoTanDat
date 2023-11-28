@@ -12,8 +12,8 @@
 
         <!-- Cart Icon -->
         <div class="flex items-center">
-            <img src="../img/shopping-cart-outline-svgrepo-com.svg" style="width: 24px; height: 24px;">
-            <span class="text-white">0</span>
+            <a href="/cart"><img src="../img/shopping-cart-outline-svgrepo-com.svg" style="width: 24px; height: 24px;"></a>
+            <span class="text-white"><%= session.getAttribute("cartSize") == null ? 0 : session.getAttribute("cartSize") %></span>
         </div>
     </div>
 </header>

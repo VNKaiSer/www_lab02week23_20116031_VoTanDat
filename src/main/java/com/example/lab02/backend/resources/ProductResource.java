@@ -62,11 +62,11 @@ public class ProductResource {
     @GET
     @Produces("application/json")
     @Path("/{id}")
-    public Response getProductById(@PathParam("id") long id){
+    public Response getProductById(@PathParam("id") long id) throws JsonProcessingException {
         Optional<Product> product = service.get(id, Product.class);
         if (product.isEmpty())
             return Response.status(Response.Status.NOT_FOUND).build();
-        return Response.ok(product.get()).build();
+        return Response.ok(mapper.writeValueAsString(product.get())).build();
     }
 
     @GET

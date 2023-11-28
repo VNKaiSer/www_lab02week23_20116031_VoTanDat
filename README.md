@@ -31,7 +31,8 @@ Yêu cầu: Viết RESTAPI bằng serverlet(JakartaEE) và có frontend
 - Các thao tác CRUD cho các đối tượng, lập order. (dùng JPA).
 - Thống kê order theo ngày, theo khoảng thời gian.
 - Thống kê order theo nhân viên bán hàng trong 1 khoảng thời gian.
-
+## 4.1 Hiển thị danh sách sản phẩm
+![img.png](images/img.png)
 ## 5. Cách chạy dự án
 
 - Clone dự án tại link này

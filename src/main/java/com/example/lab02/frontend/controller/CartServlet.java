@@ -1,9 +1,7 @@
 package com.example.lab02.frontend.controller;
-import com.example.lab02.backend.models.Product;
-import com.example.lab02.backend.services.ProductService;
+
+import com.example.lab02.frontend.api.ProductAPI;
 import com.example.lab02.frontend.model.ProductModel;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,25 +9,57 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.io.IOException;
+import java.util.*;
 
-@WebServlet("/CartServlet")
+@WebServlet(urlPatterns = "/cart")
 public class CartServlet extends HttpServlet {
-    private ProductService productService;
+    private ProductAPI productAPI;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, JsonProcessingException {
-        long product = Long.parseLong(request.getParameter("product"));
-        ObjectMapper objectMapper = new ObjectMapper();
-        Optional<Product> productO = productService.get(product, Product.class);
+            throws  IOException {
+        String action = request.getParameter("action");
+        System.out.println(action);
+        productAPI = new ProductAPI();
         HttpSession session = request.getSession();
-        List<ProductModel>  cartProduct = (List<ProductModel>) session.getAttribute("cartProduct");
-        if (cartProduct == null) {
-            cartProduct = new ArrayList<>();
+        Map<ProductModel, Integer> cart = (Map<ProductModel, Integer>) session.getAttribute("cart");
+        if(cart == null) {
+            cart = new HashMap<>();
+            session.setAttribute("cart", cart);
         }
-        cartProduct.add(objectMapper.convertValue(productO.get(), ProductModel.class));
-        session.setAttribute("cartProduct", cartProduct);
-        response.setStatus(HttpServletResponse.SC_OK);
+        if (action == null) {
+
+            response.sendRedirect("cart.jsp");
+        } else if (action.equals("addToCart")) {
+            String productId = request.getParameter("productId");
+            ProductModel product = productAPI.getProductById(Long.parseLong(productId));
+            if(cart.containsKey(product)) {
+                cart.put(product, cart.get(product) + 1);
+            } else {
+                cart.put(product, 1);
+            }
+            session.setAttribute("cart", cart);
+            response.sendRedirect("/");
+        } else if (action== "removeFromCart") {
+            String productId = request.getParameter("productId");
+            ProductModel product = productAPI.getProductById(Long.parseLong(productId));
+            if(cart.containsKey(product)) {
+                if(cart.get(product) == 1) {
+                    cart.remove(product);
+                } else {
+                    cart.put(product, cart.get(product) - 1);
+                }
+            }
+            session.setAttribute("cart", cart);
+//            response.sendRedirect("cart.jsp");
+        } else if (action.equals("clearCart")) {
+            cart.clear();
+            session.setAttribute("cart", cart);
+        }
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }
